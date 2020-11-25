@@ -26,9 +26,9 @@ public class GPSPoint {
     }
 
     public double distanceKms(GPSPoint other) {
-        double lon1 = this.lon * Math.PI / 180;
+        double lon1 = this.lon  * Math.PI / 180;
         double lon2 = other.lon * Math.PI / 180;
-        double lat1 = this.lat * Math.PI / 180;
+        double lat1 = this.lat  * Math.PI / 180;
         double lat2 = other.lat * Math.PI / 180;
 
         double dlon = lon2 - lon1;

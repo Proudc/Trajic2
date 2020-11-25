@@ -19,7 +19,8 @@ public class CSVReader extends GPSReader{
                 String[] lines = line.split(",");
                 // double time = (double) PublicFunc.convertTime(lines[1], lines[2], "2015-04-01", "00:00:00");
                 // GPSPoint point = new GPSPoint(time, Double.valueOf(lines[3]), Double.valueOf(lines[4]));
-                GPSPoint point = new GPSPoint(Double.valueOf(lines[0]), Double.valueOf(lines[1]), Double.valueOf(lines[2]));
+                GPSPoint point = new GPSPoint(Double.valueOf(lines[0]),
+                                        Double.valueOf(lines[1]), Double.valueOf(lines[2]));
                 points.add(point);
             }
             reader.close();

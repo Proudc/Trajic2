@@ -65,10 +65,6 @@ public class DynamicEncoder extends Encoder{
             }
         }
 
-        for (int i = 0; i < nDivs; i++) {
-            System.out.println(clumpedFreqs[i]);
-        }
-
         ArrayList<Integer> divVec = new ArrayList<>();
         for (int i = 0; i < nDivs; i++) {
             divVec.add(dividers[i]);
@@ -76,15 +72,10 @@ public class DynamicEncoder extends Encoder{
 
         ArrayList<String> codeWords = Huffman.createCodewords(clumpedFreqs, nDivs);
         this.codebook = new Codebook(divVec, codeWords);
-        try {
-            obs.writeInt(this.codebook.getAlphabet().size(), 8);
-            for (int symbol : this.codebook.getAlphabet()) {
-                obs.writeInt(symbol, 8);
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
+        obs.writeInt(this.codebook.getAlphabet().size(), 8);
+        for (int symbol : this.codebook.getAlphabet()) {
+            obs.writeInt(symbol, 8);
         }
-        
 
         this.codebook.encode(obs);
     }
@@ -115,14 +106,10 @@ public class DynamicEncoder extends Encoder{
             index += 1;
         }
         String str = codebook.getCodewords().get(index);
-        try {
-            for (int i = 0; i < str.length(); i++) {
-                obs.writeBit(str.charAt(i) != '0');
-            }
-            obs.writeInt(num, dividers.get(index));
-        } catch(Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < str.length(); i++) {
+            obs.writeBit(str.charAt(i) != '0');
         }
+        obs.writeInt(num, dividers.get(index));
         
     }
 

@@ -1,6 +1,5 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-
 import java.util.ArrayList;
 
 public class Codebook {
@@ -80,19 +79,10 @@ public class Codebook {
             }
         }
         maxLen = (int) (Math.log(maxLen) / Math.log(2.0)) + 1;
-        try {
-            obs.writeInt(maxLen, 8);
-        } catch (Exception e) {
-            e.printStackTrace();
+        obs.writeInt(maxLen, 8);
+        for (String codeword : this.codewords) {
+            obs.writeInt(codeword.length(), maxLen);
         }
-        try {
-            for (String codeword : this.codewords) {
-                obs.writeInt(codeword.length(), maxLen);
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        
     }
 
 }
